@@ -293,6 +293,38 @@ body {
   margin: 2rem 0;
 }
 
+/* Make the products grid scrollable within its own container */
+#productsContainer {
+  max-height: 700px;         /* Increased height for desktop */
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* Responsive: adjust height for smaller screens */
+@media (max-width: 900px) {
+  #productsContainer {
+    max-height: 440px; /* Slightly bigger for mobile too */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+/* Make sure the left panel (products-panel) doesn't stretch too tall */
+.products-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* Prevent stretching beyond viewport */
+  max-height: 90vh;
+  overflow: visible;
+}
+
 /* Product Card */
 .product-card {
   background: var(--card-bg);
@@ -574,4 +606,5 @@ html[dir="rtl"] .selected-product-item {
 html[dir="rtl"] .remove-btn {
   margin-right: 1rem;
   margin-left: 0;
+}
 }
