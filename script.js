@@ -368,14 +368,39 @@ chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const question = userInput.value.trim();
   if (!question) return;
-  if (!isBeautyQuestion(question)) {
-    chatWindow.innerHTML += `<div class="chat-message assistant"><span class="bubble assistant-bubble">Sorry, I can only answer questions about beauty, skincare, makeup, fragrance, and L'Oréal brand products.</span></div>`;
+
+  // Only block questions that are clearly NOT beauty-related or purchase-related
+  // Allow all questions by default, but block obvious non-beauty topics
+  const forbiddenKeywords = [
+    "weather",
+    "stock",
+    "sports",
+    "politics",
+    "news",
+    "game",
+    "movie",
+    "music",
+    "food",
+    "restaurant",
+    "travel",
+  ];
+  // Allow purchase-related questions
+  const allowPurchase =
+    /purchase|buy|shop|link|where.*(buy|purchase|shop)/i.test(question);
+
+  if (
+    forbiddenKeywords.some((k) => question.toLowerCase().includes(k)) &&
+    !allowPurchase
+  ) {
+    chatWindow.innerHTML += `<div class="chat-message assistant"><span class="bubble assistant-bubble">Sorry, I can only answer questions about beauty, skincare, makeup, fragrance, L'Oréal brand products, or where to purchase them.</span></div>`;
     userInput.value = "";
     return;
   }
 
+  // Add the user message to chatHistory BEFORE rendering chat
   chatHistory.push({ role: "user", content: question });
   renderChat();
+
   showLoadingSpinner();
   showTypingIndicator();
 
