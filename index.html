@@ -39,6 +39,16 @@
         </select>
       </div>
 
+      <!-- Product Search Field -->
+      <div class="product-search-bar">
+        <input
+          type="text"
+          id="productSearchInput"
+          placeholder="Search products by name or description…"
+          autocomplete="off"
+        />
+      </div>
+
       <!-- Products Grid -->
       <div id="productsContainer" class="products-grid"></div>
 
@@ -55,6 +65,17 @@
       <section class="chatbox">
         <h2>Let's Build Your Routine</h2>
         <div id="chatWindow" class="chat-window"></div>
+        <!-- Typing indicator for assistant -->
+        <div
+          id="typingIndicator"
+          class="typing-indicator"
+          style="display: none"
+        >
+          <span class="bubble assistant-bubble">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span>
+          </span>
+        </div>
 
         <form id="chatForm" class="chat-form">
           <label for="userInput" class="visually-hidden">Message</label>
@@ -85,6 +106,11 @@
       </footer>
     </div>
 
+    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
+    <script src="secrets.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
     <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
     <script src="secrets.js"></script>
     <script src="script.js"></script>

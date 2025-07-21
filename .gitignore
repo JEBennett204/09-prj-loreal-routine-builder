@@ -1,2 +1,4 @@
 # Secrets file containing API keys
 secrets.js
+cloudflare-worker.js
+# Ignore build artifacts
